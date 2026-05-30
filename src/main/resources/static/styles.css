@@ -45,6 +45,10 @@ body {
     margin-bottom: 20px;
 }
 
+.section-heading > div {
+    min-width: 0;
+}
+
 .section-heading h1,
 .section-heading h2,
 .section-heading p {
@@ -61,13 +65,18 @@ body {
 
 .section-heading p {
     color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.bookmark-form,
+.edit-form {
+    display: grid;
+    gap: 16px;
 }
 
 .bookmark-form {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
-    gap: 16px;
 }
 
 .form-error {
@@ -115,6 +124,31 @@ button:hover {
     background: var(--accent-dark);
 }
 
+.button-secondary,
+.text-link {
+    color: var(--accent-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.button-secondary:hover,
+.text-link:hover {
+    text-decoration: underline;
+}
+
+.button-secondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
 .bookmarks {
     margin-top: 28px;
 }
@@ -156,7 +190,46 @@ button:hover {
 }
 
 .bookmark-body {
+    position: relative;
     min-width: 0;
+    padding-right: 76px;
+}
+
+.bookmark-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 4px;
+}
+
+.bookmark-actions form {
+    margin: 0;
+}
+
+.icon-action {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icon-action:hover {
+    background: var(--surface-muted);
+    text-decoration: none;
+}
+
+.icon-action.danger:hover {
+    border-color: var(--danger);
+    background: #fff2f0;
 }
 
 .bookmark-title {
@@ -175,6 +248,29 @@ button:hover {
     margin: 4px 0 10px;
     color: var(--muted);
     font-size: 14px;
+}
+
+.bookmark-description {
+    margin: 0 0 10px;
+    color: var(--text);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.bookmark-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.bookmark-tags span {
+    padding: 3px 8px;
+    color: var(--accent-dark);
+    background: #e4f4f1;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .bookmark-meta {
@@ -219,5 +315,15 @@ button:hover {
 
     .bookmark-image {
         height: 72px;
+    }
+
+    .bookmark-body {
+        padding-right: 0;
+        padding-top: 40px;
+    }
+
+    .bookmark-actions {
+        left: 0;
+        right: auto;
     }
 }

@@ -40,10 +40,24 @@
                  th:src="${bookmark.ogpImageUrl()}"
                  alt="">
             <div class="bookmark-body">
+                <div class="bookmark-actions" aria-label="ブックマーク操作">
+                    <a class="icon-action" th:href="@{/bookmarks/{id}/edit(id=${bookmark.id()})}" aria-label="編集" title="編集">✏️</a>
+                    <form method="post"
+                          th:action="@{/bookmarks/{id}/delete(id=${bookmark.id()})}"
+                          onsubmit="return confirm('このブックマークを削除しますか？');">
+                        <button class="icon-action danger" type="submit" aria-label="削除" title="削除">🗑️</button>
+                    </form>
+                </div>
                 <a class="bookmark-title" th:href="${bookmark.url()}" th:text="${bookmark.title()}" target="_blank" rel="noreferrer">
                     Bookmark title
                 </a>
                 <p class="bookmark-url" th:text="${bookmark.url()}">https://example.com</p>
+                <p class="bookmark-description"
+                   th:if="${bookmark.description() != null}"
+                   th:text="${bookmark.description()}">メモ</p>
+                <div class="bookmark-tags" th:if="${bookmark.tags() != null}">
+                    <span th:each="tag : ${#strings.arraySplit(bookmark.tags(), ',')}" th:text="${tag}">tag</span>
+                </div>
                 <div class="bookmark-meta">
                     <time th:text="${bookmark.createdAt()}">created_at</time>
                 </div>
