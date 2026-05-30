@@ -18,6 +18,7 @@
         </div>
 
         <form class="edit-form" method="post" th:action="@{/bookmarks/{id}(id=${bookmark.id()})}">
+            <p class="form-error" th:if="${error != null}" th:text="${error}" role="alert" aria-live="assertive" aria-atomic="true">入力内容を確認してください。</p>
             <label>
                 <span>タイトル</span>
                 <input name="title" type="text" required maxlength="100" th:value="${title}">
@@ -34,7 +35,6 @@
                 <button type="submit">更新</button>
                 <a class="button-secondary" href="/">キャンセル</a>
             </div>
-            <p class="form-error" th:if="${error != null}" th:text="${error}">入力内容を確認してください。</p>
         </form>
     </section>
 </main>
